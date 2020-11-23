@@ -1,14 +1,13 @@
-// Define Apollo client
-import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+// Client
 
-export interface Country {
-    name: string
-}
+import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 
 export const client = new ApolloClient({
     uri: 'https://countries.trevorblades.com',
     cache: new InMemoryCache()
 })
+
+// Queries
 
 export const LIST_COUNTRIES = gql`
     {
@@ -18,3 +17,9 @@ export const LIST_COUNTRIES = gql`
         }
     }
 `;
+
+// Interfaces
+
+export interface Country {
+    name: string
+}

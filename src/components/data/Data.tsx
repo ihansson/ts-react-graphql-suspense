@@ -1,4 +1,4 @@
-import {client} from "../../lib/queries";
+import {client} from "../../lib/countries";
 import React, {Fragment} from "react";
 import gqlsuspense from 'graphql-suspense'
 import {Message} from "../helpers/Message";
