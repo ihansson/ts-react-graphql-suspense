@@ -1,9 +1,10 @@
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {SuspendData} from "../data/SuspendData";
-import {LIST_COUNTRIES} from "../../lib/countries";
+import {CONTINENTS_AND_COUNTRIES, COUNTRY} from "../../lib/countries";
 import {Message} from "../helpers/Message";
 import {CountryList} from "../content/CountryList";
+import {CountryInfo} from "../content/CountryInfo";
 import React from "react";
 
 export const Main = () => (
@@ -11,7 +12,13 @@ export const Main = () => (
         <Header/>
         <main>
             <SuspendData
-                query={LIST_COUNTRIES}
+                query={COUNTRY}
+                params={{country: "SE"}}
+                loading={<Message>Loading Countries</Message>}>
+                <CountryInfo/>
+            </SuspendData>
+            <SuspendData
+                query={CONTINENTS_AND_COUNTRIES}
                 loading={<Message>Loading Countries</Message>}>
                 <CountryList/>
             </SuspendData>
