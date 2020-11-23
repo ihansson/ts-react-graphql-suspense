@@ -1,3 +1,3 @@
 import React from "react";
 
-export const Message = ({children}) => <div>{children}</div>
+export const Message = ({type = 'is-default', children}) => <div data-testid="message" className={type}>{children}</div>
