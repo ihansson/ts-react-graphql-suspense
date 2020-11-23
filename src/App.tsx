@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {LIST_COUNTRIES} from "./lib/queries";
+import {Message} from "./components/helpers/Message";
+import {SuspendData} from "./components/data/SuspendData";
+import {CountryList} from "./components/content/CountryList";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <SuspendData
+            query={LIST_COUNTRIES}
+            loading={<Message>Loading Countries</Message>}
+            >
+            <CountryList/>
+        </SuspendData>
+    );
 }
 
 export default App;
