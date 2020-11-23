@@ -1,10 +1,9 @@
-import {client} from "../../lib/countries";
 import React, {Fragment} from "react";
-import gqlsuspense from 'graphql-suspense'
 import {Message} from "../helpers/Message";
+import {useQuery} from "@apollo/client";
 
 export function Data({children, query}) {
-    const {data, loading, error} = gqlsuspense(client.query, {query})
+    const {data, loading, error} = useQuery(query)
     if (loading || error) {
         return <Message>{error ? error.message : 'Loading...'}</Message>;
     }
