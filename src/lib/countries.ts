@@ -1,10 +1,13 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 
+import {typeDefs} from "./schema";
+
 // Client
 
 export const client = new ApolloClient({
     uri: 'https://countries.trevorblades.com',
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    typeDefs
 })
 
 // Queries
@@ -52,6 +55,15 @@ export const COUNTRY = gql`
     }
 `;
 
+export const COUNTRY_AUTOCOMPLETE = gql`
+    query Autocomplete($country: String!){
+        countries(filter: {code: {regex: $country}}){
+            name
+            code
+        }
+    }
+`
+
 // Interfaces
 
 export interface Continent {
@@ -64,50 +76,3 @@ export interface Country {
     code: string
     continent: Continent
 }
-
-// Mock
-
-export const mocks = [
-    {
-        request: {
-            query: CONTINENTS_AND_COUNTRIES,
-            variables: {},
-        },
-        result: {
-            data: {
-                continents: [
-                    {name: "Africa", code: "AF"},
-                    {name: "Mock Test Contintent", code: "MK"}
-                ],
-                countries: [
-                    {name: "Andorra", code: "AN", continent: {name: "Europe", code: "EU"}},
-                    {name: "Mock Test Country", code: "MK", continent: {name: "Mock Test Continent", code: "MK"}},
-                ],
-            },
-        },
-    },
-    {
-        request: {
-            query: COUNTRY,
-            variables: {country: 'MK'},
-        },
-        result: {
-            data: {
-                country: {name: "Mock Test Country", code: "MK", continent: {name: "Mock Test Continent", code: "MK"}}
-            },
-        },
-    },
-    {
-        request: {
-            query: CONTINENT_COUNTRIES,
-            variables: {continent: 'MK'},
-        },
-        result: {
-            data: {
-                countries: [
-                    {name: "Mock Test Country", code: "MK", continent: {name: "Mock Test Continent", code: "MK"}},
-                ]
-            },
-        },
-    }
-];

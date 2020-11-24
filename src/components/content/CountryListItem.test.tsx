@@ -3,7 +3,12 @@ import {render, screen} from '@testing-library/react';
 import {CountryListItem} from "./CountryListItem";
 
 const testCountry = {
-    name: 'Test Country Name'
+    name: 'Test Country Name',
+    code: 'MK',
+    continent: {
+        name: 'Test Continent',
+        code: 'MK'
+    }
 }
 
 describe('CountryListItem component', () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
 import {Main} from "./Main";
-import {mocks} from "../../lib/countries";
 import {MockedProvider} from "@apollo/client/testing";
+import {mocks} from "../../lib/mocks";
 
 describe('Main component', () => {
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
 import {Data} from "./Data";
-import {CONTINENTS_AND_COUNTRIES, mocks} from "../../lib/countries";
+import {CONTINENTS_AND_COUNTRIES} from "../../lib/countries";
 import {MockedProvider} from "@apollo/client/testing";
 
 import {CountryList} from "../content/CountryList";
+import {mocks} from "../../lib/mocks";
 
 describe('Data component', () => {
 
