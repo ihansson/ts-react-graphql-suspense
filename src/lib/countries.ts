@@ -26,11 +26,28 @@ export const CONTINENTS_AND_COUNTRIES = gql`
     }
 `;
 
+export const CONTINENT_COUNTRIES = gql`
+    query Continent($continent: String!){
+        countries(filter: {continent: {eq: $continent}}){
+            name
+            code
+            continent {
+                name,
+                code
+            }
+        }
+    }
+`;
+
 export const COUNTRY = gql`
     query Country($country: ID!){
         country(code: $country){
             name
             code
+            continent {
+                name,
+                code
+            }
         }
     }
 `;
@@ -69,4 +86,28 @@ export const mocks = [
             },
         },
     },
+    {
+        request: {
+            query: COUNTRY,
+            variables: {country: 'MK'},
+        },
+        result: {
+            data: {
+                country: {name: "Mock Test Country", code: "MK", continent: {name: "Mock Test Continent", code: "MK"}}
+            },
+        },
+    },
+    {
+        request: {
+            query: CONTINENT_COUNTRIES,
+            variables: {continent: 'MK'},
+        },
+        result: {
+            data: {
+                countries: [
+                    {name: "Mock Test Country", code: "MK", continent: {name: "Mock Test Continent", code: "MK"}},
+                ]
+            },
+        },
+    }
 ];

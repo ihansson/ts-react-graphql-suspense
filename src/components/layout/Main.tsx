@@ -1,28 +1,29 @@
 import {Header} from "./Header";
-import {Footer} from "./Footer";
-import {SuspendData} from "../data/SuspendData";
-import {CONTINENTS_AND_COUNTRIES, COUNTRY} from "../../lib/countries";
-import {Message} from "../helpers/Message";
-import {CountryList} from "../content/CountryList";
-import {CountryInfo} from "../content/CountryInfo";
 import React from "react";
+import {Footer} from "./Footer";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Home} from "../pages/Home";
+import {Continent} from "../pages/Continent";
+import {Country} from "../pages/Country";
 
 export const Main = () => (
-    <div>
-        <Header/>
-        <main>
-            <SuspendData
-                query={COUNTRY}
-                params={{country: "SE"}}
-                loading={<Message>Loading Countries</Message>}>
-                <CountryInfo/>
-            </SuspendData>
-            <SuspendData
-                query={CONTINENTS_AND_COUNTRIES}
-                loading={<Message>Loading Countries</Message>}>
-                <CountryList/>
-            </SuspendData>
-        </main>
-        <Footer/>
-    </div>
+    <Router>
+        <div>
+            <Header/>
+            <main>
+                <Switch>
+                    <Route path="/continent/:id">
+                        <Continent/>
+                    </Route>
+                    <Route path="/country/:id">
+                        <Country/>
+                    </Route>
+                    <Route path="/">
+                        <Home/>
+                    </Route>
+                </Switch>
+            </main>
+            <Footer/>
+        </div>
+    </Router>
 );

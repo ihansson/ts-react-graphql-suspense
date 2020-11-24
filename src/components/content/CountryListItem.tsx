@@ -1,6 +1,7 @@
 import {Country} from "../../lib/countries";
 import React from "react";
+import {Link} from "react-router-dom";
 
 export function CountryListItem({country, listKey}: { country: Country, listKey: string }) {
-    return <li key={listKey}>{country.name} ({country.continent.name})</li>
+    return <li key={listKey}><Link to={`/country/${country.code}`}>{country.name}</Link> ({country.continent.name})</li>
 }
