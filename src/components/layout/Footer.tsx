@@ -1,5 +1,8 @@
+import {Typography} from 'antd'
+const {Text} = Typography
+
 export const Footer = () => (
-    <footer>
-        2020
+    <footer style={{textAlign: 'center'}}>
+        <Text type="secondary">2020 GraphQL Country Browser</Text>
     </footer>
 )

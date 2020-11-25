@@ -4,6 +4,7 @@ import {Data} from "../data/Data";
 import {CONTINENT_COUNTRIES} from "../../lib/countries";
 import {useParams} from 'react-router-dom'
 import {CountryList} from "../content/CountryList";
+import {ContinentHeader} from "../content/ContinentHeader";
 
 interface ContinentParams {
     id: string
@@ -14,7 +15,8 @@ export const Continent = () => {
     return (<Suspense fallback={<Message>Loading</Message>}>
         <Data
             query={CONTINENT_COUNTRIES}
-            params={{continent: id}}>
+            params={{continent: id, code: id}}>
+            <ContinentHeader/>
             <CountryList/>
         </Data>
     </Suspense>)

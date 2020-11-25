@@ -30,7 +30,11 @@ export const CONTINENTS_AND_COUNTRIES = gql`
 `;
 
 export const CONTINENT_COUNTRIES = gql`
-    query Continent($continent: String!){
+    query Continent($code: ID!, $continent: String!){
+        continent(code: $code){
+            name
+            code
+        }
         countries(filter: {continent: {eq: $continent}}){
             name
             code
@@ -50,7 +54,11 @@ export const COUNTRY = gql`
             continent {
                 name,
                 code
-            }
+            },
+            native
+            phone
+            capital
+            currency
         }
     }
 `;
@@ -75,4 +83,14 @@ export interface Country {
     name: string
     code: string
     continent: Continent
+}
+
+export interface CountryIfo {
+    code: string
+    name: string
+    native: string
+    phone: string
+    continent: Continent
+    capital: string
+    currency: string
 }
